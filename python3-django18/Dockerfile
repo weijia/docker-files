@@ -3,7 +3,7 @@ FROM python:3.7
 WORKDIR /usr/src/app
 RUN git clone https://github.com/weijia/django-dev-server.git
 
-COPY . /usr/src/app/django-dev-server/external_app_repos/single-repo/single-application
+COPY ../../ /usr/src/app/django-dev-server/external_app_repos/single-repo/single-application
 
 
 WORKDIR /usr/src/app/django-dev-server
