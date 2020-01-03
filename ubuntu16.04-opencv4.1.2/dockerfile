@@ -55,20 +55,16 @@ RUN sudo apt install -y \
 ARG OPENCV_VERSION='4.1.2'
 
 # Build OpenCV
-RUN wget https://github.com/opencv/opencv/archive/${OPENCV_VERSION}.zip
-RUN unzip ${OPENCV_VERSION}.zip && rm ${OPENCV_VERSION}.zip
-RUN mv opencv-${OPENCV_VERSION} OpenCV && \
+RUN wget https://github.com/opencv/opencv/archive/${OPENCV_VERSION}.zip && \
+    unzip ${OPENCV_VERSION}.zip && rm ${OPENCV_VERSION}.zip && \
+    mv opencv-${OPENCV_VERSION} OpenCV && \
     cd OpenCV && \
     wget https://github.com/opencv/opencv_contrib/archive/${OPENCV_VERSION}.zip && \
-    unzip ${OPENCV_VERSION}.zip
-RUN cd OpenCV && \
+    unzip ${OPENCV_VERSION}.zip && \
     mkdir release && \
     cd release && \
     cmake \
-      -DCMAKE_BUILD_TYPE=Release -DOPENCV_GENERATE_PKGCONFIG=ON -DCMAKE_INSTALL_PREFIX=/usr/local .. 
-RUN cd OpenCV && \
-    #mkdir release && \
-    cd release && \
+      -DCMAKE_BUILD_TYPE=Release -DOPENCV_GENERATE_PKGCONFIG=ON -DCMAKE_INSTALL_PREFIX=/usr/local .. && \
     make all && \
     make install
 
